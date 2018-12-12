@@ -28,7 +28,7 @@ public class Status : MonoBehaviour {
 	public float currentHP { private set; get; }
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		this.currentHP = maxHP;
 		this.damage = new Subject<StatusEvent>();
 	}
