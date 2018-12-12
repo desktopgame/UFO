@@ -257,6 +257,7 @@ public class StageConfigEditor : Editor {
 			GameObject.DestroyImmediate(obj);
 		}
 		obj = new GameObject(ROOT_NAME);
+		obj.tag = "Stage";
 		obj.AddComponent<StageArea>();
 		Undo.RegisterCreatedObjectUndo(obj, "Create New GameObject");
 		//背景を作成
