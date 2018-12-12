@@ -38,8 +38,8 @@ GameObject:
   - component: {fileID: 50869147085765012}
   - component: {fileID: 58483094403092986}
   - component: {fileID: 114596163728023362}
-  - component: {fileID: 114643648904698302}
   - component: {fileID: 114389734470434378}
+  - component: {fileID: 114122836039132754}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -167,6 +167,17 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 2.15
+--- !u!114 &114122836039132754
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1264511654122524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8520c18661c1c4564b8bb5f9bb6bc9d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114148189964110232
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -338,26 +349,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   status: {fileID: 114389734470434378}
   slider: {fileID: 114148189964110232}
---- !u!114 &114643648904698302
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1264511654122524}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56c7e0bf931fc4cfcbb9afef2a3bfc81, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  particlePrefab: {fileID: 1140539675975446, guid: c769ccde6a9204ef4a018092f5796ef5,
-    type: 2}
-  emitParSeconds: 0.5
-  distance: 5
-  range: 120
-  scaleMin: {x: 0.1, y: 0.1, z: 0.1}
-  scaleMax: {x: 1, y: 1, z: 1}
-  emitMin: 10
-  emitMax: 20
 --- !u!114 &114877887123638452
 MonoBehaviour:
   m_ObjectHideFlags: 1
