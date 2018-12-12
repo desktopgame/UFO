@@ -286,6 +286,9 @@ public class StageConfigEditor : Editor {
 					break;
 				}
 				var obj = (GameObject)PrefabUtility.InstantiatePrefab(tiles[index]);
+				if(i == 0 || j == 0 || i == lines.Length - 1 || j == values.Length) {
+					obj.AddComponent<BoxCollider2D>();
+				}
 				obj.transform.position = new Vector3(posX, posY, 0);
 				obj.transform.parent = line.transform;
 				obj.GetComponent<SpriteRenderer>().sortingOrder = layer;
