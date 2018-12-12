@@ -17,5 +17,8 @@ public class PlayerHit : MonoBehaviour {
 	private void OnCollisionEnter2D(Collision2D other) {
 		var status = GetComponent<Status>();
 		status.Damage(5f);
+		Camera.main.GetComponent<CameraController>().Shake();
+		var rigid = GetComponent<Rigidbody2D>();
+		rigid.velocity = Vector3.zero;
 	}
 }
