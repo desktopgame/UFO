@@ -11,6 +11,7 @@ public class SelectableText : MonoBehaviour, ISelectable {
 	private Color selectColor;
 
 	private Color color;
+	public bool selected { private set; get; }
 
 	// Use this for initialization
 	void Start () {
@@ -26,9 +27,11 @@ public class SelectableText : MonoBehaviour, ISelectable {
 	}
 	public void OnFocus() {
 		text.color = selectColor;
+		this.selected = true;
 	}
 
 	public void OnLostFocus() {
 		text.color = color;
+		this.selected = false;
 	}
 }
