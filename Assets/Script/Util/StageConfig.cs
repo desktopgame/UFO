@@ -18,6 +18,9 @@ public class StageConfig : MonoBehaviour {
 	[SerializeField, Multiline]
 	private string foreground;
 
+	[SerializeField]
+	private bool interactive = false;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -55,6 +58,10 @@ public class StageConfig : MonoBehaviour {
 	public GameObject[] GetTiles() {
 		return tiles;
 	}
+
+	public bool IsInteractive() {
+		return interactive;
+	}
 	#endif
 }
 #if UNITY_EDITOR
@@ -68,6 +75,10 @@ public class StageConfigEditor : Editor {
 	private string replNewBG = "0";
 	private string replOldFG = "0";
 	private string replNewFG = "0";
+	private string backgroundData = "";
+	private string foregroundData = "";
+	private bool interactiveActive;
+	private int frameCount;
 	private static readonly string ROOT_NAME = "AutoGen_Stage";
 
 	void OnEnable () {
@@ -76,6 +87,10 @@ public class StageConfigEditor : Editor {
 
 	public override void OnInspectorGUI () {
 		base.OnInspectorGUI ();
+		//インタラクティブモードなら定期的に更新
+		if(self.IsInteractive()) {
+			UpdateInteractive();
+		}
 		EditorGUILayout.BeginVertical();
 		if(GUILayout.Button("Create")) {
 			CreateStage();
@@ -83,6 +98,27 @@ public class StageConfigEditor : Editor {
 		CheckTextBox();
 		ShowTools();
 		EditorGUILayout.EndVertical();
+	}
+
+	private void UpdateInteractive() {
+		//最後にデータが更新されてから数フレーム経過でステージ更新
+		if(frameCount++ >= 20 && interactiveActive) {
+			AssetDatabase.SaveAssets();
+			CreateStage();
+			this.frameCount = 0;
+			this.interactiveActive = false;
+		}
+		//前回のデータと比較
+		var sbg = self.GetBackground();
+		var sfg = self.GetForeground();
+		if(backgroundData != sbg ||
+		   foregroundData != sfg) {
+			frameCount = 0;
+			interactiveActive = true;
+		}
+		//データ更新
+		this.backgroundData = sbg;
+		this.foregroundData = sfg;
 	}
 
 	private void ShowTools() {
@@ -221,7 +257,7 @@ public class StageConfigEditor : Editor {
 			GameObject.DestroyImmediate(obj);
 		}
 		obj = new GameObject(ROOT_NAME);
-		Undo.RegisterCreatedObjectUndo(obj, ROOT_NAME);
+		Undo.RegisterCreatedObjectUndo(obj, "Create New GameObject");
 		//背景を作成
 		CreateCell(self.GetBackground().Split('\n'), 0);
 		CreateCell(self.GetForeground().Split('\n'), 5);
@@ -237,6 +273,9 @@ public class StageConfigEditor : Editor {
 			return;
 		}
 		for(int i=0; i<lines.Length; i++) {
+			var line = new GameObject("_" + layer + "_Line[" + i + "]");
+			line.transform.parent = GameObject.Find(ROOT_NAME).transform;
+			Undo.RegisterCreatedObjectUndo(line, "Create New GameObject");
 			var values = lines[i].Split(',');
 			for(int j=0; j<values.Length; j++) {
 				var posX = j * size.x;
@@ -248,8 +287,9 @@ public class StageConfigEditor : Editor {
 				}
 				var obj = (GameObject)PrefabUtility.InstantiatePrefab(tiles[index]);
 				obj.transform.position = new Vector3(posX, posY, 0);
-				obj.transform.parent = GameObject.Find(ROOT_NAME).transform;
+				obj.transform.parent = line.transform;
 				obj.GetComponent<SpriteRenderer>().sortingOrder = layer;
+				Undo.RegisterCreatedObjectUndo(obj, "Create New GameObject");
 			}
 		}
 	}
