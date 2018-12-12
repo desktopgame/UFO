@@ -4,4 +4,5 @@
 public static class AUDIO
 {
 	
+	  public const string SE_SHOCK = "shock";
 }

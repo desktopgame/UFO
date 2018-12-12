@@ -20,5 +20,6 @@ public class PlayerHit : MonoBehaviour {
 		Camera.main.GetComponent<CameraController>().Shake();
 		var rigid = GetComponent<Rigidbody2D>();
 		rigid.velocity = Vector3.zero;
+		AudioManager.Instance.PlaySE(AUDIO.SE_SHOCK);
 	}
 }
