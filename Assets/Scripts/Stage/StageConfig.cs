@@ -79,7 +79,7 @@ public class StageConfigEditor : Editor {
 	private string foregroundData = "";
 	private bool interactiveActive;
 	private int frameCount;
-	private static readonly string ROOT_NAME = "AutoGen_Stage";
+	private string stageName = "AutoGen_Stage";
 
 	void OnEnable () {
 		this.self = target as StageConfig;
@@ -92,12 +92,19 @@ public class StageConfigEditor : Editor {
 			UpdateInteractive();
 		}
 		EditorGUILayout.BeginVertical();
-		if(GUILayout.Button("Create")) {
-			CreateStage();
-		}
+		ShowCreateButton();
 		CheckTextBox();
 		ShowTools();
 		EditorGUILayout.EndVertical();
+	}
+
+	private void ShowCreateButton() {
+		EditorGUILayout.BeginHorizontal();
+		this.stageName = EditorGUILayout.TextField(stageName);
+		if(GUILayout.Button("Create")) {
+			CreateStage();
+		}
+		EditorGUILayout.EndHorizontal();
 	}
 
 	private void UpdateInteractive() {
@@ -251,12 +258,12 @@ public class StageConfigEditor : Editor {
 	}
 
 	private void CreateStage() {
-		var obj = GameObject.Find(ROOT_NAME);
+		var obj = GameObject.Find(stageName);
 		//既に存在するなら削除してから生成
 		if(obj != null) {
 			GameObject.DestroyImmediate(obj);
 		}
-		obj = new GameObject(ROOT_NAME);
+		obj = new GameObject(stageName);
 		obj.tag = "Stage";
 		obj.AddComponent<StageArea>();
 		Undo.RegisterCreatedObjectUndo(obj, "Create New GameObject");
@@ -276,7 +283,7 @@ public class StageConfigEditor : Editor {
 		}
 		for(int i=0; i<lines.Length; i++) {
 			var line = new GameObject("_" + layer + "_Line[" + i + "]");
-			line.transform.parent = GameObject.Find(ROOT_NAME).transform;
+			line.transform.parent = GameObject.Find(stageName).transform;
 			Undo.RegisterCreatedObjectUndo(line, "Create New GameObject");
 			var values = lines[i].Split(',');
 			for(int j=0; j<values.Length; j++) {
@@ -301,14 +308,14 @@ public class StageConfigEditor : Editor {
 					var leftTop = new GameObject("LeftTop");
 					Undo.RegisterCreatedObjectUndo(leftTop, "Create New GameObject");
 					leftTop.transform.position = obj.transform.transform.position;
-					leftTop.transform.parent = GameObject.Find(ROOT_NAME).transform;
+					leftTop.transform.parent = GameObject.Find(stageName).transform;
 				}
 				if(layer == 0 && i == lines.Length - 1 && j == values.Length - 1) {
 					//RightBottom
 					var rightBottom = new GameObject("RightBottom");
 					rightBottom.transform.position = obj.transform.transform.position;
 					Undo.RegisterCreatedObjectUndo(rightBottom, "Create New GameObject");
-					rightBottom.transform.parent = GameObject.Find(ROOT_NAME).transform;
+					rightBottom.transform.parent = GameObject.Find(stageName).transform;
 				}
 			}
 		}
