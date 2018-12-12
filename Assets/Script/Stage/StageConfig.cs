@@ -257,6 +257,7 @@ public class StageConfigEditor : Editor {
 			GameObject.DestroyImmediate(obj);
 		}
 		obj = new GameObject(ROOT_NAME);
+		obj.AddComponent<StageArea>();
 		Undo.RegisterCreatedObjectUndo(obj, "Create New GameObject");
 		//背景を作成
 		CreateCell(self.GetBackground().Split('\n'), 0);
@@ -286,13 +287,28 @@ public class StageConfigEditor : Editor {
 					break;
 				}
 				var obj = (GameObject)PrefabUtility.InstantiatePrefab(tiles[index]);
-				if(i == 0 || j == 0 || i == lines.Length - 1 || j == values.Length) {
+				if(layer == 0 && (i == 0 || j == 0 || i == lines.Length - 1 || j == values.Length)) {
 					obj.AddComponent<BoxCollider2D>();
 				}
 				obj.transform.position = new Vector3(posX, posY, 0);
 				obj.transform.parent = line.transform;
 				obj.GetComponent<SpriteRenderer>().sortingOrder = layer;
 				Undo.RegisterCreatedObjectUndo(obj, "Create New GameObject");
+				//範囲を表すためのオブジェクト生成
+				if(layer == 0 && i == 0 && j == 0) {
+					//LeftTop
+					var leftTop = new GameObject("LeftTop");
+					Undo.RegisterCreatedObjectUndo(leftTop, "Create New GameObject");
+					leftTop.transform.position = obj.transform.transform.position;
+					leftTop.transform.parent = GameObject.Find(ROOT_NAME).transform;
+				}
+				if(layer == 0 && i == lines.Length - 1 && j == values.Length - 1) {
+					//RightBottom
+					var rightBottom = new GameObject("RightBottom");
+					rightBottom.transform.position = obj.transform.transform.position;
+					Undo.RegisterCreatedObjectUndo(rightBottom, "Create New GameObject");
+					rightBottom.transform.parent = GameObject.Find(ROOT_NAME).transform;
+				}
 			}
 		}
 	}
