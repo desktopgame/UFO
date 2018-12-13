@@ -26,4 +26,11 @@ public class PlayerHit : MonoBehaviour {
 		rigid.velocity = Vector3.zero;
 		AudioManager.Instance.PlaySE(AUDIO.SE_SHOCK);
 	}
+
+	private void OnTriggerEnter2D(Collider2D other) {
+		if(other.tag == "PickUp") {
+			ScoreManager.Instance.Add();
+			AudioManager.Instance.PlaySE(AUDIO.SE_ITEMGETSEB);
+		}
+	}
 }
