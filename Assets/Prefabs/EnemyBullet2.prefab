@@ -133,7 +133,7 @@ MonoBehaviour:
   _boost_speed: 10
   _boost_max_speed: 60
   _boost_rate: 0.5
-  _wait: 3
+  _wait: 6
   explosion: {fileID: 1229981268407884, guid: 079a122efc6234884843146bc344f2fa, type: 2}
 --- !u!212 &212148992195739054
 SpriteRenderer:

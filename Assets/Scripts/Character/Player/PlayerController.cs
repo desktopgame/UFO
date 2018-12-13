@@ -10,7 +10,17 @@ public class PlayerController : MonoBehaviour {
     private Rigidbody2D rb2d;
     private int count;
     private System.IDisposable observer;
-    public bool freeze { set; get; }
+    public bool freeze {
+        set { mFreeze = value;
+            if(value) {
+                GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                Enemy.StopAll();
+                Missile.DestroyAll();
+            }
+        }
+        get{ return mFreeze;}
+    }
+    private bool mFreeze;
 
     // Use this for initialization
     void Start() {

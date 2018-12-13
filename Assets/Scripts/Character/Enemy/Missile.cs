@@ -97,7 +97,7 @@ public class Missile : MonoBehaviour {
 			ShowExplosion();
 		} else if(tag == "Enemy") {
 			ShowExplosion();
-			GameObject.Destroy(other.collider);
+			GameObject.Destroy(other.collider.gameObject);
 		}
 	}
 
@@ -106,5 +106,13 @@ public class Missile : MonoBehaviour {
 		var obj = GameObject.Instantiate(explosion);
 		obj.transform.position = transform.position;
 		GameObject.Destroy(obj, 1f);
+		AudioManager.Instance.PlaySE(AUDIO.SE_EXPLOSION);
+	}
+
+	public static void DestroyAll() {
+		var objs = GameObject.FindGameObjectsWithTag("EnemyBullet");
+		foreach(var obj in objs) {
+			GameObject.Destroy(obj);
+		}
 	}
 }

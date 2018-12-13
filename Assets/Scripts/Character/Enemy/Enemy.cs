@@ -23,6 +23,7 @@ public class Enemy : MonoBehaviour {
 		Fire,
 	}
 	private State state;
+	private bool isStopped;
 
 	// Use this for initialization
 	void Start () {
@@ -31,6 +32,9 @@ public class Enemy : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if(isStopped) {
+			return;
+		}
 		SearchUpdate();
 	}
 
@@ -66,6 +70,7 @@ public class Enemy : MonoBehaviour {
 		obj.transform.position = transform.position + (Vector3.up * 3);
 		yield return new WaitForSeconds(1f);
 		GameObject.Destroy(obj);
+		yield return new WaitWhile(() => isStopped);
 		//発射
 		var player = GameObject.FindGameObjectWithTag("Player");
 		var look = (player.transform.position - transform.position).normalized;
@@ -75,6 +80,7 @@ public class Enemy : MonoBehaviour {
 		obj.transform.position = transform.position + (look * fireDistance);
 		obj.GetComponentInChildren<Missile>().target = player;
 		yield return new WaitWhile(() => obj != null);
+		yield return new WaitForSeconds(1f);
 		this.state = State.Search;
 	}
 
@@ -94,6 +100,23 @@ public class Enemy : MonoBehaviour {
 			var x = Mathf.Cos(Mathf.Deg2Rad * rad);
 			var y = Mathf.Sin(Mathf.Deg2Rad * rad);
 			if(!act(new Vector2(x, y))) break;
+		}
+	}
+
+	/// <summary>
+	/// エネミーのルーチンを停止します。
+	/// </summary>
+	public void Stop() {
+		this.isStopped = true;
+	}
+
+	/// <summary>
+	/// 全てのエネミーを停止します。
+	/// </summary>
+	public static void StopAll() {
+		var enemies = GameObject.FindGameObjectsWithTag("Enemy");
+		foreach(var e in enemies) {
+			e.GetComponent<Enemy>().Stop();
 		}
 	}
 }
