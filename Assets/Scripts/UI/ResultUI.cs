@@ -22,7 +22,7 @@ public class ResultUI : MonoBehaviour {
 	private Image[] stars;
 
 	[SerializeField]
-	private Button[] buttons;
+	private ButtonGroup buttonGroup;
 
 	[SerializeField]
 	private float showSeconds = 1.0f;
@@ -32,16 +32,18 @@ public class ResultUI : MonoBehaviour {
 
 	private bool inputLock;
 	private bool show;
-	private int currentSelect;
 
 	// Use this for initialization
 	void Start () {
+		if(buttonGroup == null) {
+			this.buttonGroup = GetComponent<ButtonGroup>();
+		}
 		root.transform.localScale = Vector3.zero;
 		remineItemText.text = "";
 		damageText.text = "";
+		buttonGroup.SetInteractable(false);
 		this.inputLock = true;
 		ShowStar(0);
-		ButttonEnable(false);
 	}
 
 	private void ShowStar(int endToIndex) {
@@ -57,24 +59,6 @@ public class ResultUI : MonoBehaviour {
 		}
 	}
 	
-	private void ButttonEnable(bool b) {
-		foreach(var button in buttons) {
-			button.interactable = b;
-		}
-	}
-
-	private void SelectButton(int index) {
-		if(index >= buttons.Length) {
-			index = 0;
-		}
-		if(index < 0) {
-			index = buttons.Length - 1;
-		}
-		Debug.Log("select " + index);
-		EventSystem.current.SetSelectedGameObject(buttons[index].gameObject);
-		this.currentSelect = index;
-	}
-
 	// Update is called once per frame
 	void Update () {
 		#if UNITY_EDITOR
@@ -83,14 +67,7 @@ public class ResultUI : MonoBehaviour {
 		}
 		#endif
 		if(inputLock) { return; }
-		if(Input.GetKeyDown(KeyCode.LeftArrow)) {
-			SelectButton(currentSelect - 1);
-		} else if(Input.GetKeyDown(KeyCode.RightArrow)) {
-			SelectButton(currentSelect + 1);
-		}
-		if(Input.GetKeyDown(KeyCode.Space)) {
-			buttons[currentSelect].onClick.Invoke();
-		}
+		buttonGroup.InputUpdate();
 	}
 
 	/// <summary>
@@ -146,8 +123,8 @@ public class ResultUI : MonoBehaviour {
 		ShowStar(CalcRank());
 		//アニメーションが完了したので入力を許可
 		this.inputLock = false;
-		ButttonEnable(true);
-		SelectButton(0);
+		buttonGroup.SetInteractable(true);
+		buttonGroup.Select(0);
 	}
 
 	private int CalcRank() {

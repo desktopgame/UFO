@@ -192,6 +192,7 @@ GameObject:
   - component: {fileID: 114927905160458274}
   - component: {fileID: 114355691859325230}
   - component: {fileID: 114778382797307348}
+  - component: {fileID: 114510947040974828}
   m_Layer: 5
   m_Name: ResultCanvas
   m_TagString: Untagged
@@ -562,6 +563,20 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\u53D7\u3051\u305F\u30C0\u30E1\u30FC\u30B8"
+--- !u!114 &114510947040974828
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1704628808097464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e84f40149bcdf403d8f9ab21985dfc67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttons:
+  - {fileID: 114559505857086016}
+  - {fileID: 114538993034911440}
 --- !u!114 &114525090988700694
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -831,9 +846,7 @@ MonoBehaviour:
   - {fileID: 114728080381446228}
   - {fileID: 114062142276299880}
   - {fileID: 114633387051471940}
-  buttons:
-  - {fileID: 114559505857086016}
-  - {fileID: 114538993034911440}
+  buttonGroup: {fileID: 0}
   showSeconds: 1
   nextSceneName: Title
 --- !u!114 &114823425335998076
@@ -1016,7 +1029,7 @@ RectTransform:
   m_GameObject: {fileID: 1391349547405602}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 224831789008733782}
   - {fileID: 224861837520293430}
