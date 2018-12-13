@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UniRx;
 
 public class PlayerView : MonoBehaviour {
 	[SerializeField]
@@ -8,6 +9,8 @@ public class PlayerView : MonoBehaviour {
 
 	[SerializeField]
 	private StageArea area;
+
+	private System.IDisposable observer;
 
 	// Use this for initialization
 	void Start () {
@@ -17,6 +20,11 @@ public class PlayerView : MonoBehaviour {
 		if(area == null) {
 			this.area = GameObject.FindGameObjectWithTag("Stage").GetComponent<StageArea>();
 		}
+		//ゴールしたらバーを右端に
+		var goal = GameObject.FindGameObjectWithTag("Goal").GetComponent<GoalBar>();
+		this.observer = goal.onGoal.Subscribe((e) => {
+			info.progress = 1f;
+		});
 	}
 	
 	// Update is called once per frame
@@ -26,5 +34,9 @@ public class PlayerView : MonoBehaviour {
 		var progX = transform.position.x;
 		var parcent = (progX - startX) / (endX - startX);
 		info.progress = parcent;
+	}
+
+	private void OnDestroy() {
+		observer.Dispose();
 	}
 }

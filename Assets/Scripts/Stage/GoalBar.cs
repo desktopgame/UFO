@@ -11,8 +11,8 @@ public class GoalBar : MonoBehaviour {
 	private Subject<bool> goal;
 
 	// Use this for initialization
-	void Start () {
-		
+	void Awake () {
+		this.goal = new Subject<bool>();
 	}
 	
 	// Update is called once per frame

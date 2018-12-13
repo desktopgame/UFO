@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerHit : MonoBehaviour {
+	private PlayerController controller;
 
 	// Use this for initialization
 	void Start () {
-		
+		this.controller = GetComponent<PlayerController>();
 	}
 	
 	// Update is called once per frame
@@ -15,6 +16,9 @@ public class PlayerHit : MonoBehaviour {
 	}
 
 	private void OnCollisionEnter2D(Collision2D other) {
+		if(controller.freeze) {
+			return;
+		}
 		var status = GetComponent<Status>();
 		status.Damage(5f);
 		Camera.main.GetComponent<CameraController>().Shake();

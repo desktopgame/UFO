@@ -39,6 +39,12 @@ public class TimerUI : MonoBehaviour {
 	private Subject<TimerEvent> elapsed;
 
 	/// <summary>
+	/// タイマーが停止しているか
+	/// </summary>
+	/// <value></value>
+	public bool isStopped { private set; get;}
+
+	/// <summary>
 	/// 残り時間。
 	/// </summary>
 	/// <value></value>
@@ -64,10 +70,18 @@ public class TimerUI : MonoBehaviour {
 		
 	}
 
+	/// <summary>
+	/// タイマーを停止
+	/// </summary>
+	public void Stop() {
+		this.isStopped = true;
+	}
+
 	private IEnumerator ProgressUpdate() {
 		var wait = new WaitForSeconds(timeUnit);
 		while(remine > 0) {
 			yield return wait;
+			yield return new WaitWhile(() => isStopped);
 			this.remine -= 1;
 			tick.OnNext(new TimerEvent(this));
 		}
