@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour {
     private Rigidbody2D rb2d;
     private int count;
     private System.IDisposable observer;
-    public bool freeze { private set; get; }
+    public bool freeze { set; get; }
 
     // Use this for initialization
     void Start() {

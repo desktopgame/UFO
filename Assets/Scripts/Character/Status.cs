@@ -27,6 +27,8 @@ public class Status : MonoBehaviour {
 
 	public float currentHP { private set; get; }
 
+	public bool isDie { get { return currentHP <= 0.1f; }}
+
 	// Use this for initialization
 	void Awake () {
 		this.currentHP = maxHP;
@@ -59,6 +61,9 @@ public class Status : MonoBehaviour {
 	/// </summary>
 	/// <param name="power"></param>
 	public void Damage(float power) {
+		if(currentHP <= 0) {
+			return;
+		}
 		this.currentHP = Mathf.Max(0f, currentHP - power);
 		damage.OnNext(new StatusEvent(this));
 	}

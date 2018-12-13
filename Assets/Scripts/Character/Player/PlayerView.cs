@@ -5,6 +5,8 @@ using UniRx;
 
 public class PlayerView : MonoBehaviour {
 	[SerializeField]
+	private PlayerController controller;
+	[SerializeField]
 	private InfoUI info;
 
 	[SerializeField]
@@ -14,12 +16,18 @@ public class PlayerView : MonoBehaviour {
 	private ResultUI result;
 
 	[SerializeField]
+	private GameOverUI gameOver;
+
+	[SerializeField]
 	private StageArea area;
 
 	private System.IDisposable observer;
 
 	// Use this for initialization
 	void Start () {
+		if(controller == null) {
+			this.controller = GetComponent<PlayerController>();
+		}
 		if(info == null) {
 			this.info = GameObject.Find("InfoCanvas").GetComponent<InfoUI>();
 		}
@@ -35,6 +43,20 @@ public class PlayerView : MonoBehaviour {
 			info.progress = 1f;
 			timer.Stop();
 			result.Show();
+			controller.freeze = true;
+		});
+		//死亡したらUI表示
+		var status = GetComponent<Status>();
+		status.onDamage.Subscribe((e) => {
+			if(!e.source.isDie) { return;}
+			timer.Stop();
+			gameOver.Show();
+			controller.freeze = true;
+		});
+		//時間切れでもUI表示
+		timer.onElapsed.Subscribe((e) => {
+			gameOver.Show();
+			controller.freeze = true;
 		});
 	}
 	

@@ -6067,6 +6067,12 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 224069952229101268, guid: 9ca4f05507f2746058cb9313e698e919,
     type: 2}
   m_PrefabInternal: {fileID: 1113905827}
+--- !u!114 &265650847 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114024750496180298, guid: 9ca4f05507f2746058cb9313e698e919,
+    type: 2}
+  m_PrefabInternal: {fileID: 1113905827}
+  m_Script: {fileID: 11500000, guid: 6be5d436c6f9c498d97918799849c89d, type: 3}
 --- !u!1001 &267017363
 Prefab:
   m_ObjectHideFlags: 0
@@ -29353,6 +29359,11 @@ Prefab:
       propertyPath: timer
       value: 
       objectReference: {fileID: 2062893058}
+    - target: {fileID: 114185616006991284, guid: f0721c704037d4d45a4222cbc58c076c,
+        type: 2}
+      propertyPath: gameOver
+      value: 
+      objectReference: {fileID: 265650847}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0721c704037d4d45a4222cbc58c076c, type: 2}
   m_IsPrefabAsset: 0
