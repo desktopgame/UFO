@@ -40,9 +40,10 @@ GameObject:
   - component: {fileID: 114596163728023362}
   - component: {fileID: 114389734470434378}
   - component: {fileID: 114122836039132754}
+  - component: {fileID: 114185616006991284}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -226,6 +227,20 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114185616006991284
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1264511654122524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6706c668e841144cc9854cf78fd216e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  info: {fileID: 0}
+  timer: {fileID: 0}
+  area: {fileID: 0}
 --- !u!114 &114247513383451638
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -335,7 +350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29dae82a3966235459d3b7eafd8684a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 7
 --- !u!114 &114643026785972140
 MonoBehaviour:
   m_ObjectHideFlags: 1
