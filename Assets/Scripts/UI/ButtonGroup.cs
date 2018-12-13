@@ -8,8 +8,15 @@ using UnityEngine.UI;
 /// ボタンの一覧をキー入力で移動可能に
 /// </summary>
 public class ButtonGroup : MonoBehaviour {
+	public enum Orientation {
+		Horizontal,
+		Vertical
+	}
 	[SerializeField]
 	private Button[] buttons;
+
+	[SerializeField]
+	private Orientation orientation = Orientation.Horizontal;
 
 	public int selected { private set; get; }
 	public bool locked { private set; get; }
@@ -54,10 +61,18 @@ public class ButtonGroup : MonoBehaviour {
 		if(locked) {
 			return;
 		}
-		if(Input.GetKeyDown(KeyCode.LeftArrow)) {
-			Select(selected - 1);
-		} else if(Input.GetKeyDown(KeyCode.RightArrow)) {
-			Select(selected + 1);
+		if(this.orientation == Orientation.Horizontal) {
+			if(Input.GetKeyDown(KeyCode.LeftArrow)) {
+				Select(selected - 1);
+			} else if(Input.GetKeyDown(KeyCode.RightArrow)) {
+				Select(selected + 1);
+			}
+		} else if(this.orientation == Orientation.Vertical) {
+			if(Input.GetKeyDown(KeyCode.UpArrow)) {
+				Select(selected - 1);
+			} else if(Input.GetKeyDown(KeyCode.DownArrow)) {
+				Select(selected + 1);
+			}
 		}
 		if(Input.GetKeyDown(KeyCode.Space)) {
 			buttons[selected].onClick.Invoke();
