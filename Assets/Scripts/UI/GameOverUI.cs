@@ -75,6 +75,13 @@ public class GameOverUI : MonoBehaviour {
         });
 	}
 
+	public void ToSelect() {
+		FadeUI.instance.StartFade(() =>
+        {
+        	    SceneManager.LoadScene("Select");
+        });
+	}
+
 	public void Retry() {
 		FadeUI.instance.StartFade(() =>
         {

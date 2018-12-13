@@ -238,8 +238,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6706c668e841144cc9854cf78fd216e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controller: {fileID: 0}
   info: {fileID: 0}
   timer: {fileID: 0}
+  result: {fileID: 0}
+  gameOver: {fileID: 0}
   area: {fileID: 0}
 --- !u!114 &114247513383451638
 MonoBehaviour:

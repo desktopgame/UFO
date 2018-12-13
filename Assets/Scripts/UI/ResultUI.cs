@@ -88,6 +88,13 @@ public class ResultUI : MonoBehaviour {
         });
 	}
 
+	public void ToSelect() {
+		FadeUI.instance.StartFade(() =>
+        {
+        	    SceneManager.LoadScene("Select");
+        });
+	}
+
 	public void ToNext() {
 		FadeUI.instance.StartFade(() =>
         {

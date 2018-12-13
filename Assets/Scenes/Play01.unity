@@ -29334,16 +29334,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 224912133026988322, guid: f0721c704037d4d45a4222cbc58c076c,
-        type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114185616006991284, guid: f0721c704037d4d45a4222cbc58c076c,
-        type: 2}
-      propertyPath: result
-      value: 
-      objectReference: {fileID: 1654064310}
     - target: {fileID: 114185616006991284, guid: f0721c704037d4d45a4222cbc58c076c,
         type: 2}
       propertyPath: info
@@ -29351,19 +29341,29 @@ Prefab:
       objectReference: {fileID: 823031097}
     - target: {fileID: 114185616006991284, guid: f0721c704037d4d45a4222cbc58c076c,
         type: 2}
-      propertyPath: area
-      value: 
-      objectReference: {fileID: 884164865}
-    - target: {fileID: 114185616006991284, guid: f0721c704037d4d45a4222cbc58c076c,
-        type: 2}
       propertyPath: timer
       value: 
       objectReference: {fileID: 2062893058}
     - target: {fileID: 114185616006991284, guid: f0721c704037d4d45a4222cbc58c076c,
         type: 2}
+      propertyPath: result
+      value: 
+      objectReference: {fileID: 1654064310}
+    - target: {fileID: 114185616006991284, guid: f0721c704037d4d45a4222cbc58c076c,
+        type: 2}
       propertyPath: gameOver
       value: 
       objectReference: {fileID: 265650847}
+    - target: {fileID: 114185616006991284, guid: f0721c704037d4d45a4222cbc58c076c,
+        type: 2}
+      propertyPath: area
+      value: 
+      objectReference: {fileID: 884164865}
+    - target: {fileID: 224912133026988322, guid: f0721c704037d4d45a4222cbc58c076c,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0721c704037d4d45a4222cbc58c076c, type: 2}
   m_IsPrefabAsset: 0
