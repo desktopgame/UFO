@@ -20,9 +20,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4751139474712684}
   - component: {fileID: 212058899158953942}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GrassPond_Bottom
-  m_TagString: Untagged
+  m_TagString: Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

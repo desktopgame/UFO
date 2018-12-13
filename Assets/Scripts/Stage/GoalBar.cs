@@ -22,7 +22,7 @@ public class GoalBar : MonoBehaviour {
 	}
 
 	private void OnTriggerEnter2D(Collider2D other) {
-		if(!triggered) {
+		if(other.tag == "Player" && !triggered) {
 			this.triggered = true;
 			goal.OnNext(true);
 			AudioManager.Instance.PlaySE(AUDIO.SE_GOAL);
