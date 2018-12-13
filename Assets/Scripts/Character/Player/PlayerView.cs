@@ -8,6 +8,9 @@ public class PlayerView : MonoBehaviour {
 	private InfoUI info;
 
 	[SerializeField]
+	private TimerUI timer;
+
+	[SerializeField]
 	private StageArea area;
 
 	private System.IDisposable observer;
@@ -17,6 +20,9 @@ public class PlayerView : MonoBehaviour {
 		if(info == null) {
 			this.info = GameObject.Find("InfoCanvas").GetComponent<InfoUI>();
 		}
+		if(timer == null) {
+			this.timer = GameObject.Find("TimerCanvas").GetComponent<TimerUI>();
+		}
 		if(area == null) {
 			this.area = GameObject.FindGameObjectWithTag("Stage").GetComponent<StageArea>();
 		}
@@ -24,6 +30,7 @@ public class PlayerView : MonoBehaviour {
 		var goal = GameObject.FindGameObjectWithTag("Goal").GetComponent<GoalBar>();
 		this.observer = goal.onGoal.Subscribe((e) => {
 			info.progress = 1f;
+			timer.Stop();
 		});
 	}
 	
