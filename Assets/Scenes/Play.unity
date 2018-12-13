@@ -16569,6 +16569,12 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 224719875691526322, guid: f3d2fdf6097034a33baf8cea57de6408,
     type: 2}
   m_PrefabInternal: {fileID: 1322726261}
+--- !u!114 &823031097 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114629986363373092, guid: f3d2fdf6097034a33baf8cea57de6408,
+    type: 2}
+  m_PrefabInternal: {fileID: 1322726261}
+  m_Script: {fileID: 11500000, guid: a98c22d9f2c784b3e9a6c85a43a19896, type: 3}
 --- !u!1001 &826040956
 Prefab:
   m_ObjectHideFlags: 0
@@ -29116,6 +29122,26 @@ Prefab:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114185616006991284, guid: f0721c704037d4d45a4222cbc58c076c,
+        type: 2}
+      propertyPath: result
+      value: 
+      objectReference: {fileID: 1654064310}
+    - target: {fileID: 114185616006991284, guid: f0721c704037d4d45a4222cbc58c076c,
+        type: 2}
+      propertyPath: info
+      value: 
+      objectReference: {fileID: 823031097}
+    - target: {fileID: 114185616006991284, guid: f0721c704037d4d45a4222cbc58c076c,
+        type: 2}
+      propertyPath: area
+      value: 
+      objectReference: {fileID: 884164865}
+    - target: {fileID: 114185616006991284, guid: f0721c704037d4d45a4222cbc58c076c,
+        type: 2}
+      propertyPath: timer
+      value: 
+      objectReference: {fileID: 2062893058}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0721c704037d4d45a4222cbc58c076c, type: 2}
   m_IsPrefabAsset: 0
@@ -34279,6 +34305,12 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 224647923427628132, guid: f82ded63a222a41809e1bd075a9e341e,
     type: 2}
   m_PrefabInternal: {fileID: 538957662}
+--- !u!114 &1654064310 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114778382797307348, guid: f82ded63a222a41809e1bd075a9e341e,
+    type: 2}
+  m_PrefabInternal: {fileID: 538957662}
+  m_Script: {fileID: 11500000, guid: 73b6d519aad9d42a6b2352fce2ca6475, type: 3}
 --- !u!1001 &1654525654
 Prefab:
   m_ObjectHideFlags: 0
@@ -43826,6 +43858,12 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.16, y: 0.16}
   m_EdgeRadius: 0
+--- !u!114 &2062893058 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114017883731015250, guid: 4e26fe73b5b5a4a14b80b5609e204cf5,
+    type: 2}
+  m_PrefabInternal: {fileID: 548386545}
+  m_Script: {fileID: 11500000, guid: 5992b6a7c01d048149cdf93f62e3e6b7, type: 3}
 --- !u!224 &2062893062 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 224133177068994340, guid: 4e26fe73b5b5a4a14b80b5609e204cf5,

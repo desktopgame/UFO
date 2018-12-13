@@ -11,6 +11,9 @@ public class PlayerView : MonoBehaviour {
 	private TimerUI timer;
 
 	[SerializeField]
+	private ResultUI result;
+
+	[SerializeField]
 	private StageArea area;
 
 	private System.IDisposable observer;
@@ -31,6 +34,7 @@ public class PlayerView : MonoBehaviour {
 		this.observer = goal.onGoal.Subscribe((e) => {
 			info.progress = 1f;
 			timer.Stop();
+			result.Show();
 		});
 	}
 	

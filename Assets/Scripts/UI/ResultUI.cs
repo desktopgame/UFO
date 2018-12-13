@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 /// <summary>
 /// ゲーム結果を表示するUI
@@ -27,6 +28,7 @@ public class ResultUI : MonoBehaviour {
 
 	private bool inputLock;
 	private bool show;
+	private int currentSelect;
 
 	// Use this for initialization
 	void Start () {
@@ -57,13 +59,34 @@ public class ResultUI : MonoBehaviour {
 		}
 	}
 
+	private void SelectButton(int index) {
+		if(index >= buttons.Length) {
+			index = 0;
+		}
+		if(index < 0) {
+			index = buttons.Length - 1;
+		}
+		Debug.Log("select " + index);
+		EventSystem.current.SetSelectedGameObject(buttons[index].gameObject);
+		this.currentSelect = index;
+	}
+
 	// Update is called once per frame
 	void Update () {
 		#if UNITY_EDITOR
-		if(Input.GetKey(KeyCode.A)) {
+		if(Input.GetKey(KeyCode.Z)) {
 			Show();
 		}
 		#endif
+		if(inputLock) { return; }
+		if(Input.GetKeyDown(KeyCode.LeftArrow)) {
+			SelectButton(currentSelect - 1);
+		} else if(Input.GetKeyDown(KeyCode.RightArrow)) {
+			SelectButton(currentSelect + 1);
+		}
+		if(Input.GetKeyDown(KeyCode.Space)) {
+			buttons[currentSelect].onClick.Invoke();
+		}
 	}
 
 	/// <summary>
@@ -106,6 +129,7 @@ public class ResultUI : MonoBehaviour {
 		//アニメーションが完了したので入力を許可
 		this.inputLock = false;
 		ButttonEnable(true);
+		SelectButton(0);
 	}
 
 	private int CalcRank() {
