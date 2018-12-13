@@ -4,5 +4,6 @@
 public static class AUDIO
 {
 	
+	  public const string SE_GOAL = "goal";
 	  public const string SE_SHOCK = "shock";
 }

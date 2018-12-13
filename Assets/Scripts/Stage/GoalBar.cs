@@ -9,6 +9,7 @@ using UniRx;
 public class GoalBar : MonoBehaviour {
 	public IObservable<bool> onGoal { get { return goal; }}
 	private Subject<bool> goal;
+	private bool triggered;
 
 	// Use this for initialization
 	void Awake () {
@@ -21,6 +22,10 @@ public class GoalBar : MonoBehaviour {
 	}
 
 	private void OnTriggerEnter2D(Collider2D other) {
-		goal.OnNext(true);
+		if(!triggered) {
+			this.triggered = true;
+			goal.OnNext(true);
+			AudioManager.Instance.PlaySE(AUDIO.SE_GOAL);
+		}
 	}
 }
