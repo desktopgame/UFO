@@ -10,6 +10,8 @@ using UnityEditor;
 
 public class StageConfig : MonoBehaviour {
 	[SerializeField]
+	private GameObject goalBar;
+	[SerializeField]
 	private GameObject[] tiles;
 
 	[SerializeField, Multiline]
@@ -57,6 +59,10 @@ public class StageConfig : MonoBehaviour {
 
 	public GameObject[] GetTiles() {
 		return tiles;
+	}
+
+	public GameObject GetGoalBar() {
+		return goalBar;
 	}
 
 	public bool IsInteractive() {
@@ -268,14 +274,33 @@ public class StageConfigEditor : Editor {
 		obj.AddComponent<StageArea>();
 		Undo.RegisterCreatedObjectUndo(obj, "Create New GameObject");
 		//背景を作成
-		CreateCell(self.GetBackground().Split('\n'), 0);
-		CreateCell(self.GetForeground().Split('\n'), 5);
+		GameObject leftTop, rightBottom;
+		CreateCell(self.GetForeground().Split('\n'), 5, out leftTop, out rightBottom);
+		CreateCell(self.GetBackground().Split('\n'), 0, out leftTop, out rightBottom);
+		//ゴールバーを作成
+		if(leftTop != null && rightBottom != null) {
+			//GoalBar
+			var goalObj = (GameObject)PrefabUtility.InstantiatePrefab(self.GetGoalBar());
+			var goalPos = rightBottom.transform.position;
+			var start = leftTop.transform.position;
+			var error = false;
+			//真ん中あたりをさす
+			var diff = Mathf.Abs(rightBottom.transform.position.y - leftTop.transform.position.y);
+			start.x = rightBottom.transform.position.x - (GetSpriteSize(out error).x * 1.5f);
+			start.y += (diff / 2);
+			goalObj.transform.localScale = new Vector3(1, diff * 1.32f, 1);
+			goalObj.transform.position = start;
+			goalObj.transform.parent = GameObject.Find(stageName).transform;
+			Undo.RegisterCreatedObjectUndo(goalObj, "Create New GameObject");
+		}
 	}
 
-	private void CreateCell(string[] lines, int layer) {
+	private void CreateCell(string[] lines, int layer, out GameObject outLeftTop, out GameObject outRightBottom) {
 		var error = false;
 		var size = GetSpriteSize(out error);
 		var tiles = self.GetTiles();
+		outLeftTop = null;
+		outRightBottom = null;
 		Debug.Log("create lines " + lines.Length);
 		if(error) {
 			Debug.LogError("not same sprite size");
@@ -309,6 +334,7 @@ public class StageConfigEditor : Editor {
 					Undo.RegisterCreatedObjectUndo(leftTop, "Create New GameObject");
 					leftTop.transform.position = obj.transform.transform.position;
 					leftTop.transform.parent = GameObject.Find(stageName).transform;
+					outLeftTop = leftTop;
 				}
 				if(layer == 0 && i == lines.Length - 1 && j == values.Length - 1) {
 					//RightBottom
@@ -316,6 +342,7 @@ public class StageConfigEditor : Editor {
 					rightBottom.transform.position = obj.transform.transform.position;
 					Undo.RegisterCreatedObjectUndo(rightBottom, "Create New GameObject");
 					rightBottom.transform.parent = GameObject.Find(stageName).transform;
+					outRightBottom = rightBottom;
 				}
 			}
 		}
