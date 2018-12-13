@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 
 /// <summary>
@@ -25,6 +26,9 @@ public class ResultUI : MonoBehaviour {
 
 	[SerializeField]
 	private float showSeconds = 1.0f;
+
+	[SerializeField]
+	private string nextSceneName = "Title";
 
 	private bool inputLock;
 	private bool show;
@@ -98,6 +102,20 @@ public class ResultUI : MonoBehaviour {
 		}
 		this.show = true;
 		StartCoroutine(ShowUpdate());
+	}
+
+	public void ToTitle() {
+		FadeUI.instance.StartFade(() =>
+        {
+        	    SceneManager.LoadScene("Title");
+        });
+	}
+
+	public void ToNext() {
+		FadeUI.instance.StartFade(() =>
+        {
+        	    SceneManager.LoadScene(nextSceneName);
+        });
 	}
 
 	private IEnumerator ShowUpdate() {

@@ -13,6 +13,8 @@ public class FadeUI : CachedMonoBehaviour<FadeUI> {
     [SerializeField]
     private float fadeSeconds = 1f;
 
+    public bool fadeNow { private set; get; }
+
 	// Use this for initialization
 	void Start () {
 		if(this.image == null)
@@ -28,14 +30,19 @@ public class FadeUI : CachedMonoBehaviour<FadeUI> {
 
     public void StartFade(System.Action doInBackground)
     {
+        if(fadeNow) {
+            return;
+        }
         StartCoroutine(FadeWithAction(doInBackground));
     }
 
     private IEnumerator FadeWithAction(System.Action doInBackground)
     {
+        this.fadeNow = true;
         yield return FadeUpdate(fadeSeconds, (e) => e);
         doInBackground();
         yield return FadeUpdate(fadeSeconds, (e) => 1 - e);
+        this.fadeNow = false;
     }
 
     private IEnumerator FadeUpdate(float seconds, System.Func<float,float> calcAlpha)
