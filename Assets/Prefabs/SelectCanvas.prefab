@@ -58,6 +58,7 @@ GameObject:
   - component: {fileID: 222435051394900358}
   - component: {fileID: 114371272553311608}
   - component: {fileID: 114688472766744948}
+  - component: {fileID: 114533588724754162}
   m_Layer: 5
   m_Name: Tile01
   m_TagString: Untagged
@@ -93,6 +94,7 @@ GameObject:
   - component: {fileID: 222554393310030662}
   - component: {fileID: 114877712065582090}
   - component: {fileID: 114442456419223280}
+  - component: {fileID: 114709274748640638}
   m_Layer: 5
   m_Name: Tile04
   m_TagString: Untagged
@@ -162,6 +164,7 @@ GameObject:
   - component: {fileID: 222137470538664396}
   - component: {fileID: 114168728858620576}
   - component: {fileID: 114631108299998694}
+  - component: {fileID: 114125384989962640}
   m_Layer: 5
   m_Name: Tile02
   m_TagString: Untagged
@@ -180,6 +183,7 @@ GameObject:
   - component: {fileID: 222965957786681464}
   - component: {fileID: 114022478805920278}
   - component: {fileID: 114912498963836658}
+  - component: {fileID: 114083900036856244}
   m_Layer: 5
   m_Name: Tile03
   m_TagString: Untagged
@@ -231,6 +235,32 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114083900036856244
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1593964743833782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27fbb6442fce946a5ad910d8687fafee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: 32
+  sceneName: Play03
+--- !u!114 &114125384989962640
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1535332041982014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27fbb6442fce946a5ad910d8687fafee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: 32
+  sceneName: Play02
 --- !u!114 &114168728858620576
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -347,6 +377,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 0}
   selectColor: {r: 1, g: 0, b: 0, a: 1}
+--- !u!114 &114533588724754162
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1285499398593824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27fbb6442fce946a5ad910d8687fafee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: 32
+  sceneName: Play01
 --- !u!114 &114549451767454522
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -459,6 +502,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 0}
   selectColor: {r: 1, g: 0, b: 0, a: 1}
+--- !u!114 &114709274748640638
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1350390588677408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27fbb6442fce946a5ad910d8687fafee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: 32
+  sceneName: Play04
 --- !u!114 &114716262383472190
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -887,10 +943,10 @@ RectTransform:
   m_Father: {fileID: 224272945399612406}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 800, y: 450}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224811988343057690
 RectTransform:
