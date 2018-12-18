@@ -18,8 +18,13 @@ public class ButtonGroup : MonoBehaviour {
 	[SerializeField]
 	private Orientation orientation = Orientation.Horizontal;
 
+	[SerializeField]
+	private bool lockAutoReset = false;
+
 	public int selected { private set; get; }
 	public bool locked { private set; get; }
+
+	private float elapsed;
 
 	// Use this for initialization
 	void Start () {
@@ -60,6 +65,9 @@ public class ButtonGroup : MonoBehaviour {
 	/// </summary>
 	public void InputUpdate() {
 		if(locked) {
+			if(lockAutoReset && (this.elapsed += Time.deltaTime) >= 1f) {
+				this.locked = false;
+			}
 			return;
 		}
 		if(this.orientation == Orientation.Horizontal) {
@@ -78,6 +86,7 @@ public class ButtonGroup : MonoBehaviour {
 		if(Input.GetKeyDown(KeyCode.Space)) {
 			buttons[selected].onClick.Invoke();
 			this.locked = true;
+			this.elapsed = 0f;
 		}
 	}
 }
