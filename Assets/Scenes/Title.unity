@@ -1113,7 +1113,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: "--\u57FA\u672C\u64CD\u4F5C--\nWASD(\u3082\u3057\u304F\u306F\u77E2\u5370\u30AD\u30FC)
     \ \u79FB\u52D5\nShift                                    \u30D6\u30EC\u30FC\u30AD\nSpace
-    \                                \u6C7A\u5B9A"
+    \                                \u6C7A\u5B9A\nEscape\t\t\t\t\t\t\t\t   \u7D42\u4E86"
 --- !u!222 &2041072926
 CanvasRenderer:
   m_ObjectHideFlags: 0
