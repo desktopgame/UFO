@@ -16,6 +16,6 @@ public class CreditUI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		buttonGroup.InputUpdate();
 	}
 }

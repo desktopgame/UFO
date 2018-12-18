@@ -24,6 +24,7 @@ public class ButtonGroup : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		SetInteractable(true);
+		Select(0);
 	}
 	
 	// Update is called once per frame
