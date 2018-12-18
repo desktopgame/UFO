@@ -61,6 +61,9 @@ public class TimerUI : MonoBehaviour {
 		this.remine = length;
 		this.tick = new Subject<TimerEvent>();
 		this.elapsed = new Subject<TimerEvent>();
+	}
+
+	void Start() {
 		tick.OnNext(new TimerEvent(this));
 		StartCoroutine(ProgressUpdate());
 	}
